@@ -9,16 +9,31 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# this installs a package from fedora repos
-dnf5 install -y tmux 
+dnf5 install -y cascadia-code-fonts 
+dnf5 install -y tmux neovim fzf fd-find bat eza 
+dnf5 install -y zsh zsh-autosuggestions zsh-syntax-highlighting
 
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
+# thermald to help with intel cpu throttle issues
+dnf5 install -y thermald
+
+# Only available in fedora 44
+# dnf5 -y install cliphist 
+
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
+dnf5 -y copr enable scottames/ghostty
+dnf5 -y install ghostty
+dnf5 -y copr disable scottames/ghostty
 
-#### Example for enabling a System Unit File
+dnf5 -y copr enable yalter/niri
+dnf5 -y install niri
+dnf5 -y copr disable yalter/niri
 
-systemctl enable podman.socket
+# Fetch noctalia from terra
+dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1
+dnf5 -y install noctalia-shell
+dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0
+
+
+#### System Unit Files
+systemctl enable thermald
