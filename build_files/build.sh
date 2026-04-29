@@ -27,6 +27,7 @@ dnf5 -y install niri
 dnf5 -y copr disable yalter/niri
 
 dnf5 -y copr enable abn/throttled
+dnf5 -y remove thermald
 dnf5 -y install throttled
 dnf5 -y copr disable abn/throttled
 
