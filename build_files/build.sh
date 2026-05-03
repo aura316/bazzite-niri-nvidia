@@ -9,15 +9,10 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
+dnf5 install -y foot foot-terminfo
 dnf5 install -y cascadia-code-fonts 
 dnf5 install -y tmux fzf fd-find bat eza cliphist wtype
 dnf5 install -y zsh zsh-autosuggestions zsh-syntax-highlighting
-
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
-dnf5 -y copr enable scottames/ghostty
-dnf5 -y install ghostty
-dnf5 -y copr disable scottames/ghostty
 
 dnf5 -y copr enable yalter/niri
 dnf5 -y install niri
