@@ -13,6 +13,7 @@ dnf5 install -y foot foot-terminfo
 dnf5 install -y cascadia-code-fonts 
 dnf5 install -y tmux fzf fd-find bat eza cliphist wtype
 dnf5 install -y zsh zsh-autosuggestions zsh-syntax-highlighting
+dnf5 install -y noctalia
 
 dnf5 -y copr enable yalter/niri
 dnf5 -y install niri
@@ -22,12 +23,6 @@ dnf5 -y copr enable abn/throttled
 dnf5 -y remove thermald
 dnf5 -y install throttled
 dnf5 -y copr disable abn/throttled
-
-# Fetch noctalia from terra
-dnf5 config-manager setopt terra.enabled=1 terra-extras.enabled=1
-dnf5 -y install noctalia-shell
-dnf5 config-manager setopt terra.enabled=0 terra-extras.enabled=0
-
 
 #### System Unit Files
 systemctl enable throttled
